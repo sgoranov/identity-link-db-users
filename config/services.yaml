@@ -26,7 +26,7 @@ services:
     sgoranov\IdentityLinkShared\Security\AccessTokenHandlerConfiguration:
         arguments:
             $issuer: '%env(JWT_URL)%'
-            $audience: '%env(JWT_URL)%'
+            $audiences: ['%env(JWT_URL)%']
             $jwksUri: '%env(JWT_JWKS_URI)%'
 
     sgoranov\IdentityLinkShared\Api\DTO\AbstractQueryRequest:
