@@ -15,7 +15,8 @@ use Symfony\Component\Routing\RouterInterface;
 
 final class GroupScopeControllerTest extends WebTestCase
 {
-    public function testCreateScope(): void
+    #[DataProvider('validAudienceProvider')]
+    public function testCreateScopeWithHttpAndHttpsAudiences(string $audience): void
     {
         $client = $this->adminClient();
         $router = $client->getContainer()->get(RouterInterface::class);
@@ -23,7 +24,7 @@ final class GroupScopeControllerTest extends WebTestCase
             ->findOneBy(['name' => AppFixtures::GROUP_NAME]);
 
         $content = [
-            'audience' => 'https://example.com/orders',
+            'audience' => $audience,
             'scope' => 'orders:read',
         ];
 
@@ -83,23 +84,10 @@ final class GroupScopeControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(400);
     }
 
-    public function testAudienceMustBeAnHttpsUrl(): void
+    public static function validAudienceProvider(): iterable
     {
-        $client = $this->adminClient();
-        $router = $client->getContainer()->get(RouterInterface::class);
-        $group = $client->getContainer()->get(GroupRepository::class)
-            ->findOneBy(['name' => AppFixtures::GROUP_NAME]);
-
-        $client->request(
-            'POST',
-            $router->generate('api_v1_group_scope_create', ['groupId' => $group->getId()]),
-            [],
-            [],
-            [],
-            json_encode(['audience' => 'http://example.com/orders', 'scope' => 'orders:read'])
-        );
-
-        $this->assertResponseStatusCodeSame(400);
+        yield 'http audience' => ['http://example.com/orders'];
+        yield 'https audience' => ['https://example.com/orders'];
     }
 
     #[DataProvider('invalidCreateDataProvider')]

@@ -117,7 +117,7 @@ final class ConfigureGroupScopesCommandTest extends KernelTestCase
 
         $status = $tester->execute([
             '--group' => AppFixtures::GROUP_NAME,
-            '--audience' => 'http://example.com/api',
+            '--audience' => 'ftp://example.com/api',
             '--scope' => ['users.write'],
         ]);
 
