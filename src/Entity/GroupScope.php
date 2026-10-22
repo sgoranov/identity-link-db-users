@@ -6,7 +6,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use OpenApi\Attributes as OA;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -51,7 +51,7 @@ class GroupScope
 
     #[Groups(['create'])]
     #[Assert\NotBlank(groups: ['create'])]
-    #[Assert\Url(protocols: ['http', 'https'], groups: ['create'])]
+    #[Assert\Url(protocols: ['http', 'https'], requireTld: false, groups: ['create'])]
     #[Assert\Length(min: 1, max: 3000, groups: ['create'])]
     #[ORM\Column(length: 3000)]
     private string $audience;

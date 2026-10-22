@@ -45,7 +45,7 @@ class AuthUserRequest
     #[Assert\Length(min: 1, max: 200)]
     public string $password;
 
-    #[Assert\Choice(['client_credentials', 'password', 'authorization_code', 'refresh_token', 'implicit'])]
+    #[Assert\Choice(choices: ['client_credentials', 'password', 'authorization_code', 'refresh_token', 'implicit'])]
     public ?string $grantType = null;
 
     public function getUsername(): string
