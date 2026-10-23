@@ -7,17 +7,6 @@
 /public/bundles/
 /var/
 /vendor/
-
-/local_theme/*
-/local_theme/**
-!/local_theme/
-!/local_theme/.gitkeep
-!/local_theme/templates/
-!/local_theme/templates/.gitkeep
-!/local_theme/public/
-!/local_theme/public/.gitkeep
-!/local_theme/translations/
-!/local_theme/translations/.gitkeep
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
@@ -30,3 +19,14 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+/local_theme/*
+/local_theme/**
+!/local_theme/
+!/local_theme/.gitkeep
+!/local_theme/templates/
+!/local_theme/templates/.gitkeep
+!/local_theme/public/
+!/local_theme/public/.gitkeep
+!/local_theme/translations/
+!/local_theme/translations/.gitkeep
