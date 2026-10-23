@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad8bd510b621b0dc2c805d7ea9c1afe1",
+    "content-hash": "b68776924b01cddb8855f46ebb853150",
     "packages": [
         {
             "name": "bjeavons/zxcvbn-php",
@@ -2047,22 +2047,13 @@
                     "sgoranov\\IdentityLinkShared\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "sgoranov\\IdentityLinkShared\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "support": {
-                "source": "https://github.com/sgoranov/identity-link-shared/tree/2.0.0",
-                "issues": "https://github.com/sgoranov/identity-link-shared/issues"
+                "issues": "https://github.com/sgoranov/identity-link-shared/issues",
+                "source": "https://github.com/sgoranov/identity-link-shared/tree/2.0.0"
             },
             "time": "2026-10-22T06:48:34+00:00"
         },
