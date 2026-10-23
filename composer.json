@@ -35,7 +35,6 @@
         "symfony/twig-bundle": "7.4.*",
         "symfony/uid": "7.4.*",
         "symfony/validator": "7.4.*",
-        "symfony/web-profiler-bundle": "7.4.*",
         "symfony/yaml": "7.4.*",
         "symfony/asset-mapper": "7.4.*"
     },
@@ -95,6 +94,7 @@
         "symfony/css-selector": "7.4.*",
         "symfony/maker-bundle": "^1.51",
         "symfony/phpunit-bridge": "7.4.*",
+        "symfony/web-profiler-bundle": "7.4.*",
         "zircote/swagger-php": "^5.1"
     },
     "repositories": [
