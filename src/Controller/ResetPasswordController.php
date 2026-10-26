@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
+use Symfony\Component\RateLimiter\RateLimiterFactoryInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Uid\Uuid;
@@ -47,7 +47,7 @@ class ResetPasswordController extends AbstractController
     }
 
     #[Route('/reset-password/{loginId}', name: 'forgot_password_request', methods: ['GET', 'POST'])]
-    public function request(string $loginId, Request $request, MailerInterface $mailer, RateLimiterFactory $resetPasswordIpLimiter): Response
+    public function request(string $loginId, Request $request, MailerInterface $mailer, RateLimiterFactoryInterface $resetPasswordIpLimiter): Response
     {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);

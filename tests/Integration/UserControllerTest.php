@@ -8,13 +8,15 @@ use App\Entity\GroupScope;
 use App\Repository\GroupRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use sgoranov\IdentityLinkShared\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Routing\RouterInterface;
 
 class UserControllerTest extends WebTestCase
 {
-    public function testGetScopesForAudience(): void
+    #[DataProvider('validAudienceProvider')]
+    public function testGetScopesForHttpAndHttpsAudiences(string $audience): void
     {
         $client = static::createClient();
         $client->loginUser(new User('test', ['users.read', 'users.write', 'users.delete', 'users.auth']));
@@ -27,7 +29,7 @@ class UserControllerTest extends WebTestCase
 
         $groupScope = new GroupScope();
         $groupScope->setGroup($group);
-        $groupScope->setAudience('https://example.com/orders');
+        $groupScope->setAudience($audience);
         $groupScope->setScope('orders:read');
         $entityManager = $container->get(EntityManagerInterface::class);
         $entityManager->persist($groupScope);
@@ -35,7 +37,7 @@ class UserControllerTest extends WebTestCase
 
         $client->request('GET', $router->generate('api_v1_get_user_scopes', [
             'id' => $user->getId(),
-            'audience' => 'https://example.com/orders',
+            'audience' => $audience,
         ]));
 
         $this->assertResponseIsSuccessful();
@@ -43,6 +45,12 @@ class UserControllerTest extends WebTestCase
             ['orders:read'],
             json_decode($client->getResponse()->getContent(), true)['response']['scopes']
         );
+    }
+
+    public static function validAudienceProvider(): iterable
+    {
+        yield 'http audience' => ['http://example.com/orders'];
+        yield 'https audience' => ['https://example.com/orders'];
     }
 
     public function testGetScopesRejectsMissingAudience(): void

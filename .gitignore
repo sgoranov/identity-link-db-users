@@ -7,6 +7,18 @@
 /public/bundles/
 /var/
 /vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
+.idea
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###
 
 /local_theme/*
 /local_theme/**
@@ -18,16 +30,3 @@
 !/local_theme/public/.gitkeep
 !/local_theme/translations/
 !/local_theme/translations/.gitkeep
-###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-.phpunit.cache
-###< phpunit/phpunit ###
-
-.idea
-###> symfony/asset-mapper ###
-/public/assets/
-/assets/vendor/
-###< symfony/asset-mapper ###

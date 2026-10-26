@@ -8,7 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use sgoranov\IdentityLinkShared\Validator\UniqueEntry;
 use Doctrine\ORM\Mapping as ORM;
 use OpenApi\Attributes as OA;
-use Symfony\Component\Serializer\Annotation\Groups;
+use SortDirection;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\Ignore;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -79,7 +80,7 @@ class Group
         cascade: ['persist', 'remove'],
         orphanRemoval: true
     )]
-    #[ORM\OrderBy(['audience' => 'ASC'])]
+    #[ORM\OrderBy(['audience' => SortDirection::Ascending])]
     private Collection $scopes;
 
     public function __construct()
